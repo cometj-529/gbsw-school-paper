@@ -1,4 +1,4 @@
-package config;
+package kr.hs.gbsw.schoolpaper.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
