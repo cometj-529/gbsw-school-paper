@@ -38,13 +38,10 @@ public class UserService {
     private final TeacherRepository teacherRepository;
     private final JwtUtils jwtUtils;
 
-    public UserService(UserRepository repository, RoleRepository roleRepository, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
-        this.repository = repository;
-        this.roleRepository = roleRepository;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-        this.jwtUtils = jwtUtils;
+    public UserEntity findByUUID(UUID uuid) {
+        UserEntity user = repository.findById(uuid).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+
+        return user;
     }
 
     public String login(UserLoginDto dto) {
