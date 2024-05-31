@@ -6,11 +6,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.hs.gbsw.schoolpaper.jwt.JwtUtils;
-import lombok.RequiredArgsConstructor;
+import kr.hs.gbsw.schoolpaper.student.domain.StudentEntity;
+import kr.hs.gbsw.schoolpaper.user.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -44,15 +43,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (authorization != null && authorization.startsWith("Bearer ")) {
                 String bearerToken = authorization.substring(7).trim();
 
-                // JWT 파싱해서 검증하고 사용자 아이디 가져오기
-                String userId = jwtUtils.getUserTel(bearerToken);
+                String uuid = jwtUtils.getUserUUID(bearerToken);
                 List<String> roles = jwtUtils.getRoles(bearerToken);
                 Collection<? extends GrantedAuthority> authorities = roles.stream()
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
 
                 SecurityContextHolder.getContext().setAuthentication(
-                        new UsernamePasswordAuthenticationToken(userId, bearerToken, authorities));
+                        new UsernamePasswordAuthenticationToken(uuid, bearerToken, authorities));
             }
         } catch (Exception e) {
             SecurityContextHolder.clearContext();
