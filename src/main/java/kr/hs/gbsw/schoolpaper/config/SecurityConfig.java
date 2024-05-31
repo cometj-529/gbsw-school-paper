@@ -27,7 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig implements EnvironmentAware {
 
-    private final List<AuthenticationProvider> authProviders = new ArrayList<>(); // 초기화 추가
+    private List<AuthenticationProvider> authProviders = new ArrayList<>();
 
     private Environment environment;
 
@@ -60,7 +60,7 @@ public class SecurityConfig implements EnvironmentAware {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/users/**").permitAll()
+                        .requestMatchers("/", "/users/**", "/outgo/**").permitAll()
                         .anyRequest().authenticated());
 
         if (authProviders != null) {
