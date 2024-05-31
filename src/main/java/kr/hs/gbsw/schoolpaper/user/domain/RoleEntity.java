@@ -1,10 +1,10 @@
-package kr.hs.gbsw.schoolpaper.user.entity;
+package kr.hs.gbsw.schoolpaper.user.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
