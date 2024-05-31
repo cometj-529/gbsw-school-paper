@@ -92,6 +92,43 @@ public class UserService {
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        return jwtUtils.createJwt(tel, authorities);
+        return jwtUtils.createJwt(uuid, authorities);
+    }
+
+    public UserEntity getMy(String uuid) {
+        UserEntity user = repository.findById(UUID.fromString(uuid)).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자"));
+
+        return user;
+    }
+
+    public void adminRegister(UserTeacherRegisterDto dto) {
+        if (repository.existsByTel(dto.getTel())) {
+            throw new IllegalArgumentException("");
+        }
+
+        TeacherEntity teacher = teacherRepository.findById(dto.getTeacherIdx()).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 선생님"));
+
+        RoleEntity role = roleRepository.findById("ADMIN").orElseGet(() -> {
+
+            RoleEntity newRole = new RoleEntity();
+            newRole.setId("ADMIN");
+            newRole.setTitle("관리자");
+
+            roleRepository.save(newRole);
+
+            return newRole;
+        });
+
+        List<RoleEntity> roles = new ArrayList<>();
+        roles.add(role);
+
+        UserEntity entity = new UserEntity();
+        entity.setUuid(UUID.randomUUID());
+        entity.setTel(dto.getTel());
+        entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        entity.setRoles(roles);
+        entity.setTeacher(teacher);
+
+        userRepository.save(entity);
     }
 }

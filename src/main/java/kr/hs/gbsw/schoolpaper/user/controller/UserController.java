@@ -23,4 +23,9 @@ public class UserController {
     public void register(@RequestBody UserRegisterDto dto) {
         service.register(dto);
     }
+
+    @PostMapping("/register/admin")
+    public void adminRegister(@RequestBody UserTeacherRegisterDto dto) {
+        service.adminRegister(dto);
+    }
 }
