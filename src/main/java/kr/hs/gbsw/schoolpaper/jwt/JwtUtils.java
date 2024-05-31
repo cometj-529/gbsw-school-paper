@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import kr.hs.gbsw.schoolpaper.formatter.IntToStringFormatter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -42,18 +43,18 @@ public class JwtUtils {
         }
     }
 
-    public String createJwt(String id, Collection<? extends GrantedAuthority> authorities) {
+    public String createJwt(String uuid, Collection<? extends GrantedAuthority> authorities) {
         Map<String, Object> header = Map.of("alg", "HS512", "typ", "JWT");
 
         return Jwts.builder()
                 .setHeader(header)
-                .setSubject(id)
+                .setSubject(uuid)
                 .claim("roles", authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .signWith(SignatureAlgorithm.HS512, key)
                 .compact();
     }
 
-    public String getUserTel(String token) {
+    public String getUserUUID(String token) {
         return parseClaimsJws(token).getBody().getSubject();
     }
 
