@@ -2,7 +2,6 @@ package kr.hs.gbsw.schoolpaper.schooloutgo.controller;
 
 import kr.hs.gbsw.schoolpaper.common.AuthUserId;
 import kr.hs.gbsw.schoolpaper.schooloutgo.domain.SchoolOutGoEntity;
-import kr.hs.gbsw.schoolpaper.schooloutgo.dto.SchoolOutGoByClassDto;
 import kr.hs.gbsw.schoolpaper.schooloutgo.dto.SchoolOutGoCreateDto;
 import kr.hs.gbsw.schoolpaper.schooloutgo.service.SchoolOutGoService;
 import lombok.RequiredArgsConstructor;

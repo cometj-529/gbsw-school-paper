@@ -5,7 +5,6 @@ import kr.hs.gbsw.schoolpaper.student.domain.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface SchoolOutGoRepository extends JpaRepository<SchoolOutGoEntity, Integer> {
     List<SchoolOutGoEntity> findAllByStudentGradeAndStudentClassNumber(int grade, int classNumber);

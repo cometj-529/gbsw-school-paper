@@ -11,7 +11,7 @@ import kr.hs.gbsw.schoolpaper.user.domain.RoleEntity;
 import kr.hs.gbsw.schoolpaper.user.domain.UserEntity;
 import kr.hs.gbsw.schoolpaper.user.dto.UserTeacherRegisterDto;
 import kr.hs.gbsw.schoolpaper.user.repository.RoleRepository;
-import kr.hs.gbsw.schoolpaper.user.repository.StudentRepository;
+import kr.hs.gbsw.schoolpaper.student.repository.StudentRepository;
 import kr.hs.gbsw.schoolpaper.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -6,8 +6,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.hs.gbsw.schoolpaper.jwt.JwtUtils;
-import kr.hs.gbsw.schoolpaper.student.domain.StudentEntity;
-import kr.hs.gbsw.schoolpaper.user.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;

@@ -5,8 +5,6 @@ import kr.hs.gbsw.schoolpaper.user.domain.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @Table(name = "teacher")
 @Getter

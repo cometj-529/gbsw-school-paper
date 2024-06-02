@@ -1,11 +1,8 @@
 package kr.hs.gbsw.schoolpaper.jwt.provider;
 
-import kr.hs.gbsw.schoolpaper.student.domain.StudentEntity;
 import kr.hs.gbsw.schoolpaper.user.domain.UserEntity;
-import kr.hs.gbsw.schoolpaper.user.repository.StudentRepository;
 import kr.hs.gbsw.schoolpaper.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

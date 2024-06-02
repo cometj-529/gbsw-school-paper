@@ -1,26 +1,19 @@
 package kr.hs.gbsw.schoolpaper.schooloutgo.service;
 
 import kr.hs.gbsw.schoolpaper.events.domain.EventTimeEntity;
-import kr.hs.gbsw.schoolpaper.events.repository.EventTimeRepository;
 import kr.hs.gbsw.schoolpaper.events.service.EventTimeService;
 import kr.hs.gbsw.schoolpaper.schooloutgo.domain.SchoolOutGoEntity;
-import kr.hs.gbsw.schoolpaper.schooloutgo.dto.SchoolOutGoByClassDto;
 import kr.hs.gbsw.schoolpaper.schooloutgo.dto.SchoolOutGoCreateDto;
 import kr.hs.gbsw.schoolpaper.schooloutgo.repository.SchoolOutGoRepository;
 import kr.hs.gbsw.schoolpaper.student.domain.StudentEntity;
-import kr.hs.gbsw.schoolpaper.student.formatter.StudentInfoFormatter;
 import kr.hs.gbsw.schoolpaper.user.domain.RoleEntity;
 import kr.hs.gbsw.schoolpaper.user.domain.UserEntity;
-import kr.hs.gbsw.schoolpaper.user.repository.RoleRepository;
-import kr.hs.gbsw.schoolpaper.user.repository.StudentRepository;
-import kr.hs.gbsw.schoolpaper.user.repository.UserRepository;
 import kr.hs.gbsw.schoolpaper.user.service.RoleService;
 import kr.hs.gbsw.schoolpaper.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,8 +21,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SchoolOutGoService {
     private final SchoolOutGoRepository repository;
-    private final EventTimeRepository eventTimeRepository;
-    private final RoleRepository roleRepository;
     private final RoleService roleService;
     private final UserService userService;
     private final EventTimeService eventTimeService;
