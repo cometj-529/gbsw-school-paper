@@ -12,7 +12,7 @@ import java.util.List;
 public class StudentService {
     private final StudentRepository repository;
 
-    public List<StudentEntity> findByGradeAndClassNumber(int grade, int classNumber) {
-        return repository.findByGradeAndClassNumber(grade, classNumber);
+    public List<StudentEntity> findByGradeAndClassNumberAndUserIsNull(int grade, int classNumber) {
+        return repository.findByGradeAndClassNumberAndUserIsNullOrderByStudentNumber(grade, classNumber);
     }
 }

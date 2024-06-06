@@ -15,7 +15,7 @@ public class StudentController {
     private final StudentService service;
 
     @GetMapping("/{grade}/{classNumber}")
-    public List<StudentEntity> findByGradeAndClassNumber(@PathVariable("grade") int grade, @PathVariable("classNumber") int classNumber) {
-        return service.findByGradeAndClassNumber(grade, classNumber);
+    public List<StudentEntity> findByGradeAndClassNumberAndUserIsNull(@PathVariable("grade") int grade, @PathVariable("classNumber") int classNumber) {
+        return service.findByGradeAndClassNumberAndUserIsNull(grade, classNumber);
     }
 }

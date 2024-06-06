@@ -54,11 +54,12 @@ public class UserService {
     }
 
     public void register(UserStudentRegisterDto dto) {
-        if (repository.existsByTel(dto.getTel())) {
-            throw new IllegalArgumentException("");
-        }
 
         StudentEntity student = studentRepository.findByGradeAndClassNumberAndStudentNumber(dto.getGrade(), dto.getClassNumber(), dto.getStudentNumber()).orElseThrow(() -> new IllegalArgumentException(""));
+
+        if (repository.existsByStudent(student)) {
+            throw new IllegalArgumentException("이미 회원가입 된 학생입니다");
+        }
 
         RoleEntity role = roleRepository.findById("USER").orElseGet(() -> {
 
@@ -76,7 +77,7 @@ public class UserService {
 
         UserEntity entity = new UserEntity();
         entity.setUuid(UUID.randomUUID());
-        entity.setTel(dto.getTel());
+        entity.setTel(student.getTel());
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
         entity.setRoles(roles);
         entity.setStudent(student);
@@ -127,5 +128,11 @@ public class UserService {
         entity.setTeacher(teacher);
 
         userRepository.save(entity);
+    }
+
+    public void delete(String uuid) {
+        UserEntity user = this.findByUUID(UUID.fromString(uuid));
+
+        repository.delete(user);
     }
 }

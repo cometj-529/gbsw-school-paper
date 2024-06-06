@@ -23,6 +23,8 @@ public class StudentEntity {
 
     private String name;
 
+    private String tel;
+
     @OneToOne(mappedBy = "student", cascade = {CascadeType.REMOVE})
     @JsonIgnore
     private UserEntity user;

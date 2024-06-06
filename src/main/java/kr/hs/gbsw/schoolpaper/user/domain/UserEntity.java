@@ -27,13 +27,18 @@ public class UserEntity {
     @JsonIgnore
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.REMOVE})
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_uuid"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private List<RoleEntity> roles;
 
-    @OneToOne()
+    @OneToOne(cascade = {CascadeType.ALL})
     private StudentEntity student;
 
-    @OneToOne()
+    @OneToOne(cascade = {CascadeType.ALL})
     private TeacherEntity teacher;
 
     public List<GrantedAuthority> generateGrantedAuthorities() {

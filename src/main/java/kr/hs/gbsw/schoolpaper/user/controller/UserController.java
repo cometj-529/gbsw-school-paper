@@ -36,4 +36,9 @@ public class UserController {
     public void adminRegister(@RequestBody UserTeacherRegisterDto dto) {
         service.adminRegister(dto);
     }
+
+    @DeleteMapping("")
+    public void delete(@RequestParam("uuid") String uuid) {
+        service.delete(uuid);
+    }
 }
