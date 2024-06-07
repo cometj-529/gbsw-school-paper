@@ -41,7 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (authorization != null && authorization.startsWith("Bearer ")) {
                 String bearerToken = authorization.substring(7).trim();
 
-                String uuid = jwtUtils.getUserUUID(bearerToken);
+                String uuid = jwtUtils.getSubject(bearerToken);
                 List<String> roles = jwtUtils.getRoles(bearerToken);
                 Collection<? extends GrantedAuthority> authorities = roles.stream()
                         .map(SimpleGrantedAuthority::new)

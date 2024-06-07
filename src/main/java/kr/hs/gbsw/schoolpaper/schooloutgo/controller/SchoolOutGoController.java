@@ -3,6 +3,7 @@ package kr.hs.gbsw.schoolpaper.schooloutgo.controller;
 import kr.hs.gbsw.schoolpaper.common.AuthUserId;
 import kr.hs.gbsw.schoolpaper.schooloutgo.domain.SchoolOutGoEntity;
 import kr.hs.gbsw.schoolpaper.schooloutgo.dto.SchoolOutGoCreateDto;
+import kr.hs.gbsw.schoolpaper.schooloutgo.dto.SchoolOutGoInQrDto;
 import kr.hs.gbsw.schoolpaper.schooloutgo.service.SchoolOutGoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,16 @@ public class SchoolOutGoController {
     private final SchoolOutGoService service;
 
     @GetMapping("/{grade}/{classNumber}")
-    public List<SchoolOutGoEntity> getByClassInfo(@PathVariable("grade") int grade, @PathVariable("classNumber") int classNumber, @AuthUserId String studentInfo) {
+    public List<SchoolOutGoEntity> getByClassInfo(@PathVariable("grade") int grade, @PathVariable("classNumber") int classNumber, @AuthUserId String uuid) {
 
-        List<SchoolOutGoEntity> results = service.getByClassInfo(grade, classNumber, studentInfo);
+        List<SchoolOutGoEntity> results = service.getByClassInfo(grade, classNumber, uuid);
 
         return results;
+    }
+
+    @GetMapping("/{idx}")
+    public SchoolOutGoInQrDto getById(@PathVariable("idx") int idx, @AuthUserId String uuid) throws Exception {
+        return service.findByIdx(idx, uuid);
     }
 
     @GetMapping("/my")
@@ -45,9 +51,9 @@ public class SchoolOutGoController {
         service.allowOutGO(outGoIdx, uuid);
     }
 
-    @PutMapping("/{idx}/use")
-    public void useOutGo(@PathVariable("idx") int outGoIdx, @AuthUserId String uuid) {
-        service.useOutGo(outGoIdx, uuid);
+    @PutMapping("/use")
+    public void useOutGo(@RequestParam("token") String token, @AuthUserId String uuid) {
+        service.useOutGo(token, uuid);
     }
 
     @PutMapping("/{idx}/unuse")

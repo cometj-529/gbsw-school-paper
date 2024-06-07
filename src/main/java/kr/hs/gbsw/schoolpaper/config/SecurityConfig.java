@@ -65,7 +65,7 @@ public class SecurityConfig implements EnvironmentAware {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/users/**", "/outgo/**", "/students/**").permitAll()
+                        .requestMatchers("/", "/users/**", "/outgo/**", "/students/**", "/events").permitAll()
                         .anyRequest().authenticated());
 
         if (authProviders != null) {
